@@ -1,9 +1,5 @@
 #include <iostream>
-#include <string>
 #include <vector>
-#include <algorithm>
-#include <thread>
-#include <chrono>
 using namespace std;
 
 #define ll long long
@@ -16,20 +12,18 @@ bool sieve (ll n) {
 	return true;
 }
 
+/* square Ulam's spiral
+ 1 in top left corner
+ 1 2 9
+ 4 3 8
+ 5 6 7
+ numbers on main diagonal a(n) = n^2 - n + 1 */
 int spiral (ll S) {
-	//ll S;
-	//S = 50;
 	char nonprime, P;
 	nonprime = '.';
 	P = '0';
 	vector<vector<char>> B(S, vector<char> (S, nonprime));
 
-	// square Ulam spiral
-	// 1 in top left corner
-	// 1 2 9
-	// 4 3 8
-	// 5 6 7
-	// numbers on main diagonal a(n) = n^2 - n + 1;
 	for (int i = 0; i < S; i++) {
 		ll left, up, corner;
 		left = up = corner = (i + 1) * (i + 1) - (i + 1) + 1;
@@ -64,9 +58,9 @@ int spiral (ll S) {
 }
 
 int main() {
-	for (int i = 1; i <= 42; i++) {
-		spiral(i);
-		std::this_thread::sleep_for(std::chrono::milliseconds(200));
-	}
+	ll size;
+	cin >> size;
+	spiral(size);
+
 	return 0;
 }
